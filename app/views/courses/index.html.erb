@@ -1,0 +1,6 @@
+Hi
+Admin:
+<%= link_to 'Add a course', new_course_path %>
+<% @courses.each do |course| %>
+  <%= course.name %>
+<% end %>
