@@ -1,4 +1,5 @@
-class QuizzesController < ActionController::Base
+class QuizzesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
 
@@ -6,7 +7,7 @@ class QuizzesController < ActionController::Base
 
 
     @course = Course.find(params[:course_id])
-    @quiz = Quiz.build(id: params[:id], title: params[:title], description: params[:description], course_id: params[:course_id])
+    @quiz = @course.quizzes.build(id: params[:id], title: params[:title], description: params[:description], course_id: params[:course_id])
 
   end
 
@@ -23,8 +24,9 @@ class QuizzesController < ActionController::Base
   end
 
   def index
+      @course = Course.find(params[:course_id])
 
-    @quizzes = Quiz.all
+    @quizzes = @course.quizzes.all
   end
 
   def show

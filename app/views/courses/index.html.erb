@@ -1,6 +1,7 @@
 Hi
 Admin:
-<%= link_to 'Add a course', new_course_path %>
+<%= link_to 'Add a course', new_course_path %><br>
+
 <% @courses.each do |course| %>
-  <%= course.name %>
+  <h3><%= link_to "#{course.name}", course_path(course) %></h3>
 <% end %>

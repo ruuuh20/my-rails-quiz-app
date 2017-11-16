@@ -1,1 +1,7 @@
-hi
+<% @quizzes.each do |quiz| %>
+
+    <h2><%= quiz.title %></h2>
+    <%= quiz.description %><br>
+    <%= link_to 'Take Quiz', course_quiz_path(quiz.course_id, quiz.id) %>
+  
+<% end %>

@@ -1,4 +1,4 @@
-class CoursesController < ActionController::Base
+class CoursesController < ApplicationController
 
   def new
     @course = Course.new

@@ -1,1 +1,9 @@
-hi
+<%= @quiz.title %><br>
+<%= @quiz.description %><br>
+<br>
+<br>
+
+
+
+
+<%= link_to 'Go to list of quizzes for this class', course_quizzes_path(@quiz.course_id) %>
