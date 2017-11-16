@@ -1,7 +1,7 @@
-Hi
-Admin:
-<%= link_to 'Add a course', new_course_path %><br>
+<% if current_user.admin? %>
+  <%= link_to 'Add New Course', new_course_path %><br>
+<% end %>
 
 <% @courses.each do |course| %>
-  <h3><%= link_to "#{course.name}", course_path(course) %></h3>
+  <h4><%= link_to "#{course.name}", course_path(course) %></h4>
 <% end %>

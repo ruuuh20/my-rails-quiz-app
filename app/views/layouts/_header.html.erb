@@ -3,8 +3,10 @@
     <div class="navbar-header">
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user.admin? %>
+          <li class="admin">ADMIN</li>
+        <% end %>
         <li><%= link_to "Home", root_path %></li>
-
 
         <% if user_signed_in? %>
           <li><%= link_to "Courses", courses_path %></li>
