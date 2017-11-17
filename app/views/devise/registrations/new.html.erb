@@ -21,6 +21,22 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label "Admin?:" %> <%= f.check_box :admin %>
+
+  </div>
+
+  <div class="field">
+
+    <%= f.label "Select current courses" %><br>
+    <%= f.collection_check_boxes :course_ids, Course.all, :id, :name do |m| %>
+      <%= m.check_box %> <%= m.label %><br>
+    <% end %>
+
+
+</div>
+
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

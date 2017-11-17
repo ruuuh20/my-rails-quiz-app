@@ -1,2 +1,13 @@
 <h1><%= @course.name %></h1>
-<h3><%= link_to 'Create Quiz for this class', new_course_quiz_path(@course) %></h3>
+
+<% if current_user && current_user.is_admin? %>
+  <h3><%= link_to 'Create Quiz for this class', new_course_quiz_path(@course) %></h3>
+<% else %>
+  <h3>Choose which quiz to take:</h3>
+<% end %>
+
+
+
+<% @course.quizzes.each do |q| %>
+  <%= link_to "#{q.title}" %> - <%= q.description %><br>
+<% end %>

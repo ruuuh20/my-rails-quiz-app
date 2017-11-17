@@ -2,6 +2,7 @@
 
 <% if logged_in? %>
   You are logged in.<br>
+  <%= link_to "Go to Select Courses", edit_user_path(current_user.id) %>
   <%  if current_user.admin? %>
     Status: Admin
   <% end %>

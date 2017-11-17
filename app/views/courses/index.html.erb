@@ -5,3 +5,8 @@
 <% @courses.each do |course| %>
   <h4><%= link_to "#{course.name}", course_path(course) %></h4>
 <% end %>
+
+MY courses:
+<% current_user.courses.each do |c| %>
+  <%= c.name %>
+<% end %>

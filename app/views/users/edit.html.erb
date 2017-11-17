@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>
+
+
+<div class="field">
+  <%= f.label "Select current courses" %><br>
+  <%= f.collection_check_boxes :course_ids, Course.all, :id, :name do |m| %>
+    <%= m.check_box %> <%= m.label %><br>
+  <% end %>
+</div>
+
+<%= f.submit "Update" %>
+
+
+<% end %>

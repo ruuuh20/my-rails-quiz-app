@@ -10,8 +10,22 @@ class User < ApplicationRecord
   has_many :answers
 
 
-  def admin?
-    admin
+  def courses_attributes=(courses_attributes)
+    courses_attributes.each do |course_attributes|
+      self.courses.build(course_attributes)
+    end
+  end
+
+  def is_admin?
+    self.admin == true
+  end
+
+  def is_student?
+    self.status == "student"
+  end
+
+  def is_teacher?
+    self.status == "teacher"
   end
 
   def self.from_omniauth(auth)

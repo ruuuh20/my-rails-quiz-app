@@ -1,3 +1,4 @@
+require 'pry'
 class CoursesController < ApplicationController
 
   def new
@@ -7,6 +8,7 @@ class CoursesController < ApplicationController
   def index
     @user = current_user
     @courses = Course.all
+    # binding.pry
   end
 
   def create
