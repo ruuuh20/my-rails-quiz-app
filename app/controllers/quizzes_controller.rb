@@ -1,6 +1,7 @@
+require 'pry'
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
-  before_action :must_be_admin, only: [:create, :edit, :delete, :update]
+  before_action :must_be_admin, only: [:create, :delete]
 
   def new
     # @course = current_user.courses.build
@@ -50,13 +51,18 @@ class QuizzesController < ApplicationController
   def update
     @quiz = Quiz.find(params[:id])
     @course = Course.find(params[:course_id])
+    # binding.pry
+    #admin updates the quiz
     if current_user.is_admin?
       @quiz.update(quiz_params)
       @quiz.save
     else
+      #non-admin changes status
       @quiz.status = "Submitted"
-      @quiz.update(:status => params[:status])
+      # @quiz.update(:status => params[:status])
       @quiz.save
+      # binding.pry
+
     end
     redirect_to course_quizzes_path(@course)
   end

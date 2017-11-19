@@ -29,6 +29,16 @@ class UsersController < ApplicationController
 
       end
     end
+    @quizzes = Quiz.all
+    @submitted_quizzes = Quiz.submitted
+    @in_progress_quizzes = Quiz.in_progress
+    @not_submitted_quizzes = Quiz.not_submitted
+    #submitted
+    # @quizzes.each do |q|
+    #   if q.submitted?
+    #     arrayyy
+    # binding.pry
+
 
 
   end

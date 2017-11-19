@@ -12,15 +12,15 @@ class Quiz < ApplicationRecord
   end
 
   def self.in_progress
-    self.status == "In Progress"
+    where("status = 'In Progress'")
   end
 
   def self.submitted
-    self.status == "Submitted"
+    where("status = 'Submitted'")
   end
 
   def self.not_submitted
-    self.status == "Not Submitted"
+    where("status = 'Not submitted'")
   end
 
 

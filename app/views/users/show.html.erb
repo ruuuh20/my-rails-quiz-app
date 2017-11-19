@@ -5,18 +5,33 @@ You are logged in as <%= @user.email %><br>
   Status: Student
 <% end %>
 
-
 <% if current_user.is_admin? %>
   <h4>There are currently: </h4>
-  <h4><%= @total_users_count %> total users</h4>
-  <h4><%= @total_courses_count %> total courses</h4>
+  <h4><%= @total_users_count %> total <%= link_to "users", users_path %></h4>
+  <h4><%= @total_courses_count %> total <%= link_to "courses", courses_path %></h4>
   <h4><%= @total_quiz_count %> total quizzes</h4>
 
-
 <% else %>
-  <h4>Quizzes Submitted:</h4>
-  You are enrolled in <%= @courses.count %> Courses
+  <h4>You are enrolled in <%= @courses.count %> Courses</h4>
+  <h4>You have <%= @in_progress_quizzes.count %> in progress </h4>
+    <% if @in_progress_quizzes.count > 0 %>
+      <% @in_progress_quizzes.each do |sq| %>
+        <li><%= sq.title %></li>
+      <% end %>
+    <% end %>
 
-  <h4>You have <%= @quiz_count %> quizzes </h4>
+  <h4>You have <%= @submitted_quizzes.count %> submitted:</h4>
+    <% if @submitted_quizzes.count > 0 %>
+      <% @submitted_quizzes.each do |sq| %>
+        <li><%= sq.title %></li>
+      <% end %>
+    <% end %>
+
+    <h4>You have <%= @not_submitted_quizzes.count %> not submitted:</h4>
+      <% if @not_submitted_quizzes.count > 0 %>
+        <% @not_submitted_quizzes.each do |sq| %>
+          <li><%= sq.title %></li>
+        <% end %>
+      <% end %>
 
 <% end %>

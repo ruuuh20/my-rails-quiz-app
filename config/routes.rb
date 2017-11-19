@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :courses do
     resources :quizzes
   end
-  resources :users, only: [:show, :index, :edit, :update] 
-
+  resources :users, only: [:show, :index, :edit, :update]
+patch "quizzes/:course_id/quizzes", controller: 'quizzes', action: 'update'
 end

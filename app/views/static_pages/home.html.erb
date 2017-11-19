@@ -2,7 +2,9 @@
 
 <% if logged_in? %>
   You are logged in.<br>
-  <%= link_to "Go to Select/Add Courses", edit_user_path(current_user.id) %><br>
+    <% if !current_user.is_admin? %>
+      <%= link_to "Go to Select/Add Courses", edit_user_path(current_user.id) %><br>
+    <% end %>
 
 
 <% else %>
