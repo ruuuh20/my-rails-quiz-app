@@ -13,6 +13,7 @@ You are logged in as <%= @user.email %><br>
 
 <% else %>
   <h4>You are enrolled in <%= @courses.count %> Courses</h4>
+  <h4>There are <%= @quiz_count %> quizzes.</h4>
   <h4>You have <%= @in_progress_quizzes.count %> in progress </h4>
     <% if @in_progress_quizzes.count > 0 %>
       <% @in_progress_quizzes.each do |sq| %>
@@ -20,9 +21,9 @@ You are logged in as <%= @user.email %><br>
       <% end %>
     <% end %>
 
-  <h4>You have <%= @submitted_quizzes.count %> submitted:</h4>
-    <% if @submitted_quizzes.count > 0 %>
-      <% @submitted_quizzes.each do |sq| %>
+  <h4>You have <%= @my_submitted_quiz.count %> submitted:</h4>
+    <% if @my_submitted_quiz.count > 0 %>
+      <% @my_submitted_quiz.each do |sq| %>
         <li><%= sq.title %></li>
       <% end %>
     <% end %>

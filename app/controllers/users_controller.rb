@@ -29,34 +29,42 @@ class UsersController < ApplicationController
 
       end
     end
-    @quizzes = Quiz.all
-    @submitted_quizzes = Quiz.submitted
+    @q = Quiz.all
+    @all_quizzes = @q.map { |quiz| quiz.title }
+      current_user.courses.each do |r|
+        @my_submitted_quiz = r.quizzes.select { |qz| qz.submitted }
+      end
+
+
+  # binding.pry
+    # @submitted_quizzes = Quiz.submitted
     @in_progress_quizzes = Quiz.in_progress
     @not_submitted_quizzes = Quiz.not_submitted
+
+    # binding.pry
+    # current_user.courses.each do |c|
+
     #submitted
     # @quizzes.each do |q|
     #   if q.submitted?
     #     arrayyy
     # binding.pry
-
-
-
   end
 
   def edit
     @user = current_user
   end
 
-def update
-  @user = User.find(params[:id])
-  if @user.update_attributes(user_params)
-    #successful update
-    flash[:success] = "Profile updated"
-    redirect_to user_path(@user)
-  else
-    render 'edit'
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      #successful update
+      flash[:success] = "Profile updated"
+      redirect_to user_path(@user)
+    else
+      render 'edit'
+    end
   end
-end
 
 
   private
