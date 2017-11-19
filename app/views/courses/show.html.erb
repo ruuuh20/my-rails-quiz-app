@@ -1,13 +1,18 @@
-<h1><%= @course.name %></h1>
+<h2><%= @course.name %></h2>
 
 <% if current_user && current_user.is_admin? %>
   <h3><%= link_to 'Create Quiz for this class', new_course_quiz_path(@course) %></h3>
 <% else %>
-  <h3>Choose which quiz to take:</h3>
+  <h3>Choose quiz to take:</h3>
 <% end %>
 
 
 
 <% @course.quizzes.each do |q| %>
-  <%= link_to "#{q.title}" %> - <%= q.description %><br>
+  <h4><%= link_to "#{q.title}", course_quiz_path(@course.id, q.id) %> - <%= q.description %></h4>
+    <% if current_user.is_admin? %>
+      <%= link_to 'Edit', edit_course_quiz_path(@course.id, q.id) %> |
+      <%= link_to 'Delete', course_quiz_path(@course.id, q.id), :method => 'delete' %>
+    <% end %>
+
 <% end %>

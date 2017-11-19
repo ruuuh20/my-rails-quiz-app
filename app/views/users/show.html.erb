@@ -1,0 +1,22 @@
+You are logged in as <%= @user.email %><br>
+<% if current_user.is_admin? %>
+  Status: Admin
+<% else %>
+  Status: Student
+<% end %>
+
+
+<% if current_user.is_admin? %>
+  <h4>There are currently: </h4>
+  <h4><%= @total_users_count %> total users</h4>
+  <h4><%= @total_courses_count %> total courses</h4>
+  <h4><%= @total_quiz_count %> total quizzes</h4>
+
+
+<% else %>
+  <h4>Quizzes Submitted:</h4>
+  You are enrolled in <%= @courses.count %> Courses
+
+  <h4>You have <%= @quiz_count %> quizzes </h4>
+
+<% end %>

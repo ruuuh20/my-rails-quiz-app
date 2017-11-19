@@ -1,12 +1,25 @@
 <% if current_user.admin? %>
   <%= link_to 'Add New Course', new_course_path %><br>
-<% end %>
+  <h4>You have created <%= @my_courses.count %> courses:</h4>
+    <% current_user.courses.each do |c| %>
+      <h4><%= link_to "#{c.name}", course_path(c) %></h4>
+    <% end %>
 
-<% @courses.each do |course| %>
-  <h4><%= link_to "#{course.name}", course_path(course) %></h4>
-<% end %>
+<% else %>
+  <h3>You are currently enrolled in <%= current_user.courses.count %> courses:</h3>
+  <% current_user.courses.each do |c| %>
+    <h4><%= link_to "#{c.name}", course_path(c) %></h4>
+  <% end %>
+    <% if current_user.courses.count == 0 %>
+      <%= link_to "Click here to add courses", edit_user_path(current_user) %>
+    <% end %>
+  <% end %>
 
-MY courses:
-<% current_user.courses.each do |c| %>
-  <%= c.name %>
-<% end %>
+  <h3>All Courses:</h3>
+  <% @courses.each do |course| %>
+    <h4><%= link_to "#{course.name}", course_path(course) %></h4>
+      <% if current_user.is_admin? %>
+        <%= link_to "Edit", edit_course_path(course) %> |
+        <%= link_to "Delete", course_path(course), :method => "delete" %>
+      <% end %>
+  <% end %>

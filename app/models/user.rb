@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :user_courses
   has_many :courses, through: :user_courses
-  has_many :answers
+  has_many :quizzes
 
 
   def courses_attributes=(courses_attributes)

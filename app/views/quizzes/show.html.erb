@@ -3,6 +3,14 @@
 <br>
 <br>
 
+<%= form_for(@quiz, :url => course_quizzes_path(@course.id), :method => 'post') do |f| %>
+  <%= f.label :Submitted %>
+  <%= f.check_box :status %>
+  <%= f.submit "Mark as submitted" %>
+<% end %>
+
+
+
 
 
 

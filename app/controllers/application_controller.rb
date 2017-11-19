@@ -11,6 +11,14 @@ end
 #   @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
 # end
 
+private
+
+  def must_be_admin
+     unless current_user && current_user.is_admin?
+       redirect_to root_path, notice: "You are not admin"
+     end
+   end
+
 
 
 # In case you want to permit additional parameters (the lazy way™), you can do so using a simple before filter in your ApplicationController:
