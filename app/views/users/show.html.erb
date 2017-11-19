@@ -10,6 +10,9 @@ You are logged in as <%= @user.email %><br>
   <h4><%= @total_users_count %> total <%= link_to "users", users_path %></h4>
   <h4><%= @total_courses_count %> total <%= link_to "courses", courses_path %></h4>
   <h4><%= @total_quiz_count %> total quizzes</h4>
+  <% @all_quizzes.each do |a| %>
+    <li><%= a %></li>
+  <% end %>
 
 <% else %>
   <h4>You are enrolled in <%= @courses.count %> Courses</h4>
